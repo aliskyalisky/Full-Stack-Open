@@ -53,7 +53,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <ul>
-        {persons.map(person => <li key={person.name}>{person.name} {person.num}</li>)}
+        {persons.map(person => person.name.toLowerCase().includes(filter) ? <li key={person.name}>{person.name} {person.num}</li> : <p key={person.name}></p>)}
       </ul>
     </div>
   )
