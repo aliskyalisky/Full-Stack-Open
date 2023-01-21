@@ -8,6 +8,7 @@ const App = () => {
   ]) 
   const [newName, setNewName] = useState('')
   const [newNum, setNewNum] = useState('')
+  const [filter, setFilter] = useState('')
 
   const handleNameChange = (event) => {
     setNewName(event.target.value)
@@ -17,13 +18,17 @@ const App = () => {
     setNewNum(event.target.value)
   }
 
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value)
+  }
+
   const addPerson = (event) => {
     event.preventDefault()
     const person = {
       name: newName,
       num: newNum
     }
-    if (persons.filter(p => p.name === newName).length > 0) {
+    if (persons.find(p => p.name === newName)) {
       alert(`${newName} is already added to the phonebook`)
     } else {
     setPersons(persons.concat(person))
@@ -35,7 +40,9 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+          filter results: <input value={filter} onChange={handleFilterChange}/>
       <form>
+        <h3>Add new</h3>
         <div>
           name: <input value={newName} onChange={handleNameChange}/>
           number: <input value={newNum} onChange={handleNumChange}/>
